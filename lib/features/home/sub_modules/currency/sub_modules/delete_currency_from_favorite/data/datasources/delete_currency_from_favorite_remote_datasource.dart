@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:cryptohub/core/services/api_service.dart';
 import 'package:cryptohub/core/services/storage_service.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/models/delete_currency_from_favorite_model.dart';
@@ -14,11 +16,10 @@ class DeleteCurrencyFromFavoriteRemoteDataSource {
   Future<DeleteCurrencyFromFavoriteModel> deleteCurrencyFromFavorite(
       DeleteCurrencyFromFavoriteParams params) async {
     final token = await storageService.getToken();
+    final path = '/api:awZizgY2/favorites/${params.favoritesId}';
     final response = await apiService.delete(
-      '/api:awZizgY2/favorites/',
-      queryParameters: {'favorites_id': params.favoritesId},
+      path,
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return DeleteCurrencyFromFavoriteModel.fromJson(response.data);
-  }
-}
+}}
