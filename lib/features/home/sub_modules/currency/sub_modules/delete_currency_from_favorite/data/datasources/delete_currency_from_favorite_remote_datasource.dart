@@ -15,7 +15,7 @@ class DeleteCurrencyFromFavoriteRemoteDataSource {
       DeleteCurrencyFromFavoriteParams params) async {
     final token = await storageService.getToken();
     final response = await apiService.delete(
-      '/favorites',
+      '/api:awZizgY2/favorites/',
       queryParameters: {'favorites_id': params.favoritesId},
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
