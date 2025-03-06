@@ -13,7 +13,7 @@ class FavoriteCurrencyModel with _$FavoriteCurrencyModel {
     // ignore: invalid_annotation_target
     @JsonKey(name: 'user_id') @Default(0) int userId,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'cryptocurrency_id') @Default(0) int cryptocurrencyId,
+    @JsonKey(name: 'cryptocurrency_id') required int cryptocurrencyId,
   }) = _FavoriteCurrencyModel;
 
   factory FavoriteCurrencyModel.fromJson(Map<String, dynamic> json) =>
