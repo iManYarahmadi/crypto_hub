@@ -1,31 +1,70 @@
 # Flutter/Dart related
 build/
+.dart_tool/
+.packages
+.pub/
 *.g.dart
 *.freezed.dart
 *.part.dart
-.dart_tool/
-.packages
+*.pb.dart
+*.pbenum.dart
+*.pbgrpc.dart
+*.pbjson.dart
 .flutter-plugins
 .flutter-plugins-dependencies
+analysis_options.yaml
 
-# Logs and temp files
+# Logs and temporary files
 *.log
 *.tmp
 *.swp
+*.bak
 
-# OS-specific
-.DS_Store  # Mac
-Thumbs.db  # Windows
-
-# Optional: Uncomment if you want to ignore pubspec.lock
+# Dependency lock files (optional)
 # pubspec.lock
+# packages.lock
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+*.DS_Store
+desktop.ini
 
 # Android specific
 android/.gradle/
 android/app/build/
+android/build/
 android/local.properties
+android/*.keystore
+android/key.properties
+android/.idea/
 
 # iOS specific
 ios/.generated/
 ios/Flutter/Generated.xcconfig
 ios/Pods/
+ios/Podfile.lock
+ios/.symlinks/
+ios/*.ipa
+ios/Runner.xcworkspace/contents.xcworkspacedata
+
+# Build artifacts and caches
+*.o
+*.so
+*.a
+*.pyc
+*.class
+*.jar
+
+# IDE and editor files
+.idea/
+*.iml
+.vscode/
+*.suo
+*.user
+
+# Miscellaneous
+*.env
+*.key
+*.pem
+*.cert
