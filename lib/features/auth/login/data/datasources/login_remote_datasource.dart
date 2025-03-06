@@ -9,7 +9,7 @@ class LoginRemoteDataSource {
 
   Future<LoginModel> login(String email, String password) async {
     final params = LoginParamsModel(email: email, password: password);
-    final response = await apiService.post('/api:0uinMmtC/auth/login', {
+    final response = await apiService.post('/api:0uinMmtC/auth/get_favorite_currency', {
       'email': params.email,
       'password': params.password,
     });

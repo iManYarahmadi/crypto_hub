@@ -3,11 +3,11 @@ import 'package:cryptohub/features/home/presentation/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/get_favorite_currency',
   routes: [
     GoRoute(
-      path: '/login',
-      name: 'login',
+      path: '/get_favorite_currency',
+      name: 'get_favorite_currency',
       builder: (context, state) => LoginScreen(),
     ),
     GoRoute(
