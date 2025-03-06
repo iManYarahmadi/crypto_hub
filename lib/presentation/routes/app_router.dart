@@ -1,6 +1,6 @@
 import 'package:cryptohub/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:cryptohub/features/home/presentation/home_screen.dart';
-import 'package:cryptohub/features/profile/presentation/sections/user_information_section.dart';
+import 'package:cryptohub/features/profile/presentation/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
 

@@ -1,7 +1,7 @@
 import 'package:cryptohub/core/error/failure.dart';
 import 'package:cryptohub/core/usecases/base_usecase.dart';
-import 'package:cryptohub/features/profile/domain/entities/user_information_entity.dart';
-import 'package:cryptohub/features/profile/domain/usecases/user_information_usecase.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/domain/entities/user_information_entity.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/domain/usecases/user_information_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'user_information_event.dart';

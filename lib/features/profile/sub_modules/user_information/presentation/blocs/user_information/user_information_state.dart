@@ -1,5 +1,5 @@
+import 'package:cryptohub/features/profile/sub_modules/user_information/domain/entities/user_information_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:cryptohub/features/profile/domain/entities/user_information_entity.dart';
 
 part 'user_information_state.freezed.dart';
 

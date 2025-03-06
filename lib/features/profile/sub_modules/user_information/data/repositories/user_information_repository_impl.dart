@@ -1,8 +1,8 @@
 import 'package:cryptohub/core/error/failure.dart';
-import 'package:cryptohub/features/profile/data/datasources/user_information_remote_datasource.dart';
-import 'package:cryptohub/features/profile/data/mappers/user_information_mapper.dart';
-import 'package:cryptohub/features/profile/domain/entities/user_information_entity.dart';
-import 'package:cryptohub/features/profile/domain/repositories/user_information_repository.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/data/datasources/user_information_remote_datasource.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/data/mappers/user_information_mapper.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/domain/entities/user_information_entity.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/domain/repositories/user_information_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class UserInformationRepositoryImpl implements UserInformationRepository {

@@ -1,6 +1,6 @@
 import 'package:cryptohub/core/services/api_service.dart';
 import 'package:cryptohub/core/services/storage_service.dart';
-import 'package:cryptohub/features/profile/data/models/user_information_model.dart';
+import 'package:cryptohub/features/profile/sub_modules/user_information/data/models/user_information_model.dart';
 import 'package:dio/dio.dart';
 
 class UserInformationRemoteDataSource {
