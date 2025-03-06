@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:cryptohub/core/error/exceptions.dart';
 
 
+
 class ApiService {
   final Dio dio;
 
@@ -38,17 +39,34 @@ class ApiService {
     }
   }
 
+  Future<Response> get(
+      String path, {
+        Options? options,
+      }) async {
+    try {
+      final response = await dio.get(
+        path,
+        options: options ?? Options(),
+      );
+      return response;
+    } on DioException catch (e) {
+      throw ServerException('Server error: ${e.message} - ${e.response?.statusCode}');
+    } catch (e) {
+      throw ServerException('Unknown error: $e');
+    }
+  }
+
   Future<Response> delete(
       String path, {
         Map<String, dynamic>? data,
-        Map<String, dynamic>? queryParameters, // اضافه کردن Query Parameters
+        Map<String, dynamic>? queryParameters,
         Options? options,
       }) async {
     try {
       final response = await dio.delete(
         path,
         data: data,
-        queryParameters: queryParameters, // ارسال Query Params
+        queryParameters: queryParameters,
         options: options ?? Options(),
       );
       return response;
