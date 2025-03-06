@@ -11,6 +11,7 @@ import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:cryptohub/presentation/validation/login_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -75,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     );
+                    context.goNamed('home');
                   },
                   error: (message) {
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -6,7 +6,7 @@ class ApiService {
   final Dio dio;
 
   ApiService(this.dio) {
-    dio.options.baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:0uinMmtC';
+    dio.options.baseUrl = 'https://x8ki-letl-twmt.n7.xano.io';
     dio.options.connectTimeout = Duration(seconds: 10);
     dio.options.receiveTimeout = Duration(seconds: 10);
     dio.options.headers = {
