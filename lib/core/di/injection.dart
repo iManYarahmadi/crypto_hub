@@ -25,6 +25,11 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_fav
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/repositories/get_favorite_currencies_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/usecases/get_favorite_currencies_usecase.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/presentation/blocs/get_favorite_currency/get_favorite_currencies_bloc.dart';
+import 'package:cryptohub/features/profile/data/datasources/user_information_remote_datasource.dart';
+import 'package:cryptohub/features/profile/data/repositories/user_information_repository_impl.dart';
+import 'package:cryptohub/features/profile/domain/repositories/user_information_repository.dart';
+import 'package:cryptohub/features/profile/domain/usecases/user_information_usecase.dart';
+import 'package:cryptohub/features/profile/presentation/blocs/user_information/user_information_bloc.dart';
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -116,6 +121,23 @@ void setupDependencies() {
   );
   sl.registerFactory<GetFavoriteCurrenciesBloc>(
     () => GetFavoriteCurrenciesBloc(sl<GetFavoriteCurrenciesUseCase>()),
+  );
+  //get user information
+  sl.registerLazySingleton<UserInformationRemoteDataSource>(
+        () => UserInformationRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+  );
+
+  sl.registerLazySingleton<UserInformationRepository>(
+        () => UserInformationRepositoryImpl(sl<UserInformationRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<UserInformationUseCase>(
+        () => UserInformationUseCase(sl<UserInformationRepository>()),
+  );
+
+//
+  sl.registerLazySingleton<UserInformationBloc>(
+        () => UserInformationBloc(sl<UserInformationUseCase>()),
   );
   //Theme
   sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());

@@ -1,19 +1,26 @@
 import 'package:cryptohub/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:cryptohub/features/home/presentation/home_screen.dart';
+import 'package:cryptohub/features/profile/presentation/sections/user_information_section.dart';
 import 'package:go_router/go_router.dart';
 
+
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/get_favorite_currency',
+  initialLocation: '/login',
   routes: [
     GoRoute(
-      path: '/get_favorite_currency',
-      name: 'get_favorite_currency',
-      builder: (context, state) => LoginScreen(),
+      path: '/login',
+      name: 'login',
+      builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
       path: '/home',
       name: 'home',
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/profile',
+      name: 'profile',
+      builder: (context, state) => const ProfileScreen(),
     ),
   ],
 );

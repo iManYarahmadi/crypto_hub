@@ -1,9 +1,9 @@
-import 'package:cryptohub/core/di/injection.dart';
 import 'package:cryptohub/core/utils/ui_constants.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/presentation/sections/currency_section.dart';
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSurface,
             ),
             onPressed: () {
-              // فعلاً خالیه، بعداً به صفحه پروفایل می‌ره
+             context.goNamed('profile');
             },
             tooltip: 'Profile',
           ),
