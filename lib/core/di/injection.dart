@@ -10,9 +10,21 @@ import 'package:cryptohub/features/home/sub_modules/currency/data/repositories/c
 import 'package:cryptohub/features/home/sub_modules/currency/domain/repositories/currency_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/domain/usecases/currency_usecase.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/login/currency_bloc.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/datasources/add_currency_to_favorite_remote_datasource.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/repositories/add_currency_to_favorite_repository_impl.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/repositories/add_currency_to_favorite_repository.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/usecases/add_currency_to_favorite_usecase.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/datasources/delete_currency_from_favorite_remote_datasource.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/repositories/delete_currency_from_favorite_repository_impl.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/repositories/delete_currency_from_favorite_repository.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/usecases/delete_currency_from_favorite_usecase.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/presentation/blocs/delete_currency_to_favorite/delete_currency_from_favorite_bloc.dart';
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/presentation/blocs/add_currency_to_favorite/delete_currency_from_favorite_bloc.dart'
+    show AddCurrencyToFavoriteBloc;
 
 final GetIt sl = GetIt.instance;
 
@@ -44,7 +56,33 @@ void setupDependencies() {
   sl.registerFactory<CurrencyBloc>(
     () => CurrencyBloc(sl<GetCurrenciesUseCase>()),
   );
-
+// AddCurrencyToFavorite Feature
+  sl.registerLazySingleton<AddCurrencyToFavoriteRemoteDataSource>(
+        () => AddCurrencyToFavoriteRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+  );
+  sl.registerLazySingleton<AddCurrencyToFavoriteRepository>(
+        () => AddCurrencyToFavoriteRepositoryImpl(sl<AddCurrencyToFavoriteRemoteDataSource>()),
+  );
+  sl.registerLazySingleton<AddCurrencyToFavoriteUseCase>(
+        () => AddCurrencyToFavoriteUseCase(sl<AddCurrencyToFavoriteRepository>()),
+  );
+  sl.registerFactory<AddCurrencyToFavoriteBloc>(
+        () => AddCurrencyToFavoriteBloc(sl<AddCurrencyToFavoriteUseCase>()),
+  );
+  //
+  // DeleteCurrencyFromFavorite Feature
+  sl.registerLazySingleton<DeleteCurrencyFromFavoriteRemoteDataSource>(
+        () => DeleteCurrencyFromFavoriteRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+  );
+  sl.registerLazySingleton<DeleteCurrencyFromFavoriteRepository>(
+        () => DeleteCurrencyFromFavoriteRepositoryImpl(sl<DeleteCurrencyFromFavoriteRemoteDataSource>()),
+  );
+  sl.registerLazySingleton<DeleteCurrencyFromFavoriteUseCase>(
+        () => DeleteCurrencyFromFavoriteUseCase(sl<DeleteCurrencyFromFavoriteRepository>()),
+  );
+  sl.registerFactory<DeleteCurrencyFromFavoriteBloc>(
+        () => DeleteCurrencyFromFavoriteBloc(sl<DeleteCurrencyFromFavoriteUseCase>()),
+  );
   //Theme
   sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }
