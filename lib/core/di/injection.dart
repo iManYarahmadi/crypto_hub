@@ -20,6 +20,11 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/repositories/delete_currency_from_favorite_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/usecases/delete_currency_from_favorite_usecase.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/presentation/blocs/delete_currency_to_favorite/delete_currency_from_favorite_bloc.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/data/datasources/get_favorite_currencies_remote_datasource.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/data/repositories/get_favorite_currencies_repository_impl.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/repositories/get_favorite_currencies_repository.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/usecases/get_favorite_currencies_usecase.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/presentation/blocs/login/get_favorite_currencies_bloc.dart';
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -54,32 +59,63 @@ void setupDependencies() {
   sl.registerFactory<CurrencyBloc>(
     () => CurrencyBloc(sl<GetCurrenciesUseCase>()),
   );
-// AddCurrencyToFavorite Feature
+  // AddCurrencyToFavorite Feature
   sl.registerLazySingleton<AddCurrencyToFavoriteRemoteDataSource>(
-        () => AddCurrencyToFavoriteRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+    () => AddCurrencyToFavoriteRemoteDataSource(
+      sl<ApiService>(),
+      sl<StorageService>(),
+    ),
   );
   sl.registerLazySingleton<AddCurrencyToFavoriteRepository>(
-        () => AddCurrencyToFavoriteRepositoryImpl(sl<AddCurrencyToFavoriteRemoteDataSource>()),
+    () => AddCurrencyToFavoriteRepositoryImpl(
+      sl<AddCurrencyToFavoriteRemoteDataSource>(),
+    ),
   );
   sl.registerLazySingleton<AddCurrencyToFavoriteUseCase>(
-        () => AddCurrencyToFavoriteUseCase(sl<AddCurrencyToFavoriteRepository>()),
+    () => AddCurrencyToFavoriteUseCase(sl<AddCurrencyToFavoriteRepository>()),
   );
   sl.registerFactory<AddCurrencyToFavoriteBloc>(
-        () => AddCurrencyToFavoriteBloc(sl<AddCurrencyToFavoriteUseCase>()),
+    () => AddCurrencyToFavoriteBloc(sl<AddCurrencyToFavoriteUseCase>()),
   );
   //
   // DeleteCurrencyFromFavorite Feature
   sl.registerLazySingleton<DeleteCurrencyFromFavoriteRemoteDataSource>(
-        () => DeleteCurrencyFromFavoriteRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+    () => DeleteCurrencyFromFavoriteRemoteDataSource(
+      sl<ApiService>(),
+      sl<StorageService>(),
+    ),
   );
   sl.registerLazySingleton<DeleteCurrencyFromFavoriteRepository>(
-        () => DeleteCurrencyFromFavoriteRepositoryImpl(sl<DeleteCurrencyFromFavoriteRemoteDataSource>()),
+    () => DeleteCurrencyFromFavoriteRepositoryImpl(
+      sl<DeleteCurrencyFromFavoriteRemoteDataSource>(),
+    ),
   );
   sl.registerLazySingleton<DeleteCurrencyFromFavoriteUseCase>(
-        () => DeleteCurrencyFromFavoriteUseCase(sl<DeleteCurrencyFromFavoriteRepository>()),
+    () => DeleteCurrencyFromFavoriteUseCase(
+      sl<DeleteCurrencyFromFavoriteRepository>(),
+    ),
   );
   sl.registerFactory<DeleteCurrencyFromFavoriteBloc>(
-        () => DeleteCurrencyFromFavoriteBloc(sl<DeleteCurrencyFromFavoriteUseCase>()),
+    () =>
+        DeleteCurrencyFromFavoriteBloc(sl<DeleteCurrencyFromFavoriteUseCase>()),
+  );
+  // GetFavoriteCurrencies Feature
+  sl.registerLazySingleton<GetFavoriteCurrenciesRemoteDataSource>(
+    () => GetFavoriteCurrenciesRemoteDataSource(
+      sl<ApiService>(),
+      sl<StorageService>(),
+    ),
+  );
+  sl.registerLazySingleton<GetFavoriteCurrenciesRepository>(
+    () => GetFavoriteCurrenciesRepositoryImpl(
+      sl<GetFavoriteCurrenciesRemoteDataSource>(),
+    ),
+  );
+  sl.registerLazySingleton<GetFavoriteCurrenciesUseCase>(
+    () => GetFavoriteCurrenciesUseCase(sl<GetFavoriteCurrenciesRepository>()),
+  );
+  sl.registerFactory<GetFavoriteCurrenciesBloc>(
+    () => GetFavoriteCurrenciesBloc(sl<GetFavoriteCurrenciesUseCase>()),
   );
   //Theme
   sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
