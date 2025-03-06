@@ -13,7 +13,7 @@ class GetFavoriteCurrenciesRemoteDataSource {
   Future<List<FavoriteCurrencyModel>> getFavoriteCurrencies() async {
     final token = await storageService.getToken();
     final response = await apiService.get(
-      '/favorites',
+      '/api:awZizgY2/cryptocurrency',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return (response.data as List).map((json) => FavoriteCurrencyModel.fromJson(json)).toList();
