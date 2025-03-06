@@ -14,6 +14,7 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_cur
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/repositories/add_currency_to_favorite_repository_impl.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/repositories/add_currency_to_favorite_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/usecases/add_currency_to_favorite_usecase.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/presentation/blocs/add_currency_to_favorite/add_currency_to_favorite_bloc.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/datasources/delete_currency_from_favorite_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/repositories/delete_currency_from_favorite_repository_impl.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/repositories/delete_currency_from_favorite_repository.dart';
@@ -22,9 +23,6 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-
-import '../../features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/presentation/blocs/add_currency_to_favorite/delete_currency_from_favorite_bloc.dart'
-    show AddCurrencyToFavoriteBloc;
 
 final GetIt sl = GetIt.instance;
 
