@@ -24,7 +24,7 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_fav
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/data/repositories/get_favorite_currencies_repository_impl.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/repositories/get_favorite_currencies_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/usecases/get_favorite_currencies_usecase.dart';
-import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/presentation/blocs/login/get_favorite_currencies_bloc.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/presentation/blocs/get_favorite_currency/get_favorite_currencies_bloc.dart';
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
