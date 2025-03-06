@@ -14,7 +14,7 @@ class AddCurrencyToFavoriteRemoteDataSource {
   Future<AddCurrencyToFavoriteModel> addCurrencyToFavorite(AddCurrencyToFavoriteParams params) async {
     final token = await storageService.getToken();
     final response = await apiService.post(
-      '/favorites',
+      '/api:awZizgY2/favorites',
       {
         'cryptocurrency_id': params.cryptocurrencyId,
       },
