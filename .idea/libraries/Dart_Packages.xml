@@ -250,14 +250,14 @@
         <entry key="freezed">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed-3.0.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed-2.5.8/lib" />
             </list>
           </value>
         </entry>
         <entry key="freezed_annotation">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed_annotation-3.0.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed_annotation-2.4.4/lib" />
             </list>
           </value>
         </entry>
@@ -737,8 +737,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/fixnum-1.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/flutter_bloc-9.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/flutter_lints-5.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed-3.0.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed_annotation-3.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed-2.5.8/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/freezed_annotation-2.4.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/frontend_server_client-4.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/get_it-8.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/glob-2.1.3/lib" />
