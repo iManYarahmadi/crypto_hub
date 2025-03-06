@@ -10,9 +10,9 @@ class AddCurrencyToFavoriteBloc extends Bloc<AddCurrencyToFavoriteEvent, AddCurr
       : super(const AddCurrencyToFavoriteState.initial()) {
     on<AddCurrencyToFavoriteEvent>((event, emit) async {
       await event.when(
-        addCurrencyToFavorite: (cryptocurrencyId) async {
+        addCurrencyToFavorite: (params) async {
           emit(const AddCurrencyToFavoriteState.loading());
-          final result = await addCurrencyToFavoriteUseCase(cryptocurrencyId);
+          final result = await addCurrencyToFavoriteUseCase(params);
           result.fold(
                 (failure) => emit(AddCurrencyToFavoriteState.error(failure.message)),
                 (favorite) => emit(AddCurrencyToFavoriteState.success(favorite)),
