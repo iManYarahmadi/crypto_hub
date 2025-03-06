@@ -1,6 +1,4 @@
-// lib/presentation/validation/login_validation.dart
 import 'dart:async';
-
 import 'package:rxdart/rxdart.dart';
 
 class LoginValidation {
@@ -20,9 +18,9 @@ class LoginValidation {
     handleData: (email, sink) {
       const emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
       if (email.isEmpty) {
-        sink.addError('ایمیل نمی‌تونه خالی باشه');
+        sink.addError('Email cannot be empty');
       } else if (!RegExp(emailPattern).hasMatch(email)) {
-        sink.addError('لطفاً یه ایمیل معتبر وارد کن');
+        sink.addError('Please enter a valid email');
       } else {
         sink.add(email);
       }
@@ -31,8 +29,11 @@ class LoginValidation {
 
   static final _validatePassword = StreamTransformer<String, String>.fromHandlers(
     handleData: (password, sink) {
-      if (password.length < 6) {
-        sink.addError('رمز عبور باید حداقل 6 کاراکتر باشه');
+      const passwordPattern = r'^(?=.*@)[a-zA-Z0-9@]{8,}$';
+      if (password.isEmpty) {
+        sink.addError('Password cannot be empty');
+      } else if (!RegExp(passwordPattern).hasMatch(password)) {
+        sink.addError('Password must be at least 8 characters, contain @, and only English letters or numbers');
       } else {
         sink.add(password);
       }
