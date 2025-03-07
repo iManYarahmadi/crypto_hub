@@ -11,7 +11,7 @@ class CurrencyRemoteDataSource {
 
   Future<List<CurrencyModel>> getCurrencies() async {
     final token = await storageService.getToken();
-    final response = await apiService.dio.get(
+    final response = await apiService.get(
       '/api:awZizgY2/cryptocurrency',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );

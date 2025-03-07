@@ -1,21 +1,17 @@
 import 'package:cryptohub/core/utils/constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class StorageService {
-  Future<SharedPreferences> _getPrefs() async => await SharedPreferences.getInstance();
+  static const _storage = FlutterSecureStorage();
 
   Future<void> saveToken(String token) async {
-    final prefs = await _getPrefs();
-    await prefs.setString(AppConstants.tokenKey, token);
+    await _storage.write(key: AppConstants.tokenKey, value: token);
   }
 
   Future<String?> getToken() async {
-    final prefs = await _getPrefs();
-    return prefs.getString(AppConstants.tokenKey);
+    return await _storage.read(key: AppConstants.tokenKey);
   }
-
   Future<void> clearToken() async {
-    final prefs = await _getPrefs();
-    await prefs.remove(AppConstants.tokenKey);
+    await _storage.delete(key: AppConstants.tokenKey);
   }
 }

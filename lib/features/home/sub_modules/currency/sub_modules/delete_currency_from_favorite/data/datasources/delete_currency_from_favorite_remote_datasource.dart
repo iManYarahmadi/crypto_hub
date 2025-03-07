@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 
 import 'package:cryptohub/core/services/api_service.dart';
 import 'package:cryptohub/core/services/storage_service.dart';

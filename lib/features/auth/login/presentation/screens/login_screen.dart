@@ -12,6 +12,7 @@ import 'package:cryptohub/presentation/validation/login_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -52,7 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            icon: Icon(Icons.brightness_6, color: Theme.of(context).iconTheme.color),
+            icon: Icon(
+              Icons.brightness_6,
+              color: Theme.of(context).iconTheme.color,
+            ),
             onPressed: () => context.read<ThemeCubit>().toggleTheme(),
           ),
         ],
@@ -66,20 +70,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 initial: () {},
                 loading: () {},
                 success: (loginEntity) {
-                  _storageService.saveToken(loginEntity.token);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        UIConstants.loginSuccessMessage,
-                      ),
-                    ),
-                  );
+                  _storageService.saveToken(loginEntity.token).then((_) {
+                    if (!context.mounted) {
+                      return;
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(UIConstants.loginSuccessMessage)),
+                    );
+                    context.goNamed('home');
+                  });
                   context.goNamed('home');
                 },
                 error: (message) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('${UIConstants.errorMessagePrefix}: $message'),
+                      content: Text(
+                        '${UIConstants.errorMessagePrefix}: $message',
+                      ),
                     ),
                   );
                 },
@@ -119,8 +126,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-
-
-
-
