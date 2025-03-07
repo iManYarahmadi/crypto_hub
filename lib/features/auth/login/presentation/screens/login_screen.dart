@@ -79,7 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                     context.goNamed('home');
                   });
-                  context.goNamed('home');
                 },
                 error: (message) {
                   ScaffoldMessenger.of(context).showSnackBar(
