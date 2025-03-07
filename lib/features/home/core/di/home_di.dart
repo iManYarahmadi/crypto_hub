@@ -1,16 +1,11 @@
 import 'package:cryptohub/core/di/injection.dart';
 import 'package:cryptohub/core/services/api_service.dart';
 import 'package:cryptohub/core/services/storage_service.dart';
-import 'package:cryptohub/features/auth/login/data/datasources/login_remote_datasource.dart';
-import 'package:cryptohub/features/auth/login/data/repositories/login_repository_impl.dart';
-import 'package:cryptohub/features/auth/login/domain/repositories/login_repository.dart';
-import 'package:cryptohub/features/auth/login/domain/usecases/login_usecase.dart';
-import 'package:cryptohub/features/auth/login/presentation/blocs/login/login_bloc.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/data/datasources/currency_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/data/repositories/currency_repository_impl.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/domain/repositories/currency_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/domain/usecases/currency_usecase.dart';
-import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/login/currency_bloc.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/currency/currency_bloc.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/datasources/add_currency_to_favorite_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/repositories/add_currency_to_favorite_repository_impl.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/repositories/add_currency_to_favorite_repository.dart';
