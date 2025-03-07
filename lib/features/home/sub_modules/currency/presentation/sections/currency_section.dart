@@ -28,91 +28,83 @@ class CurrencySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => sl<CurrencyBloc>()..add(const CurrencyEvent.fetchCurrencies())),
-        BlocProvider(create: (_) => sl<GetFavoriteCurrenciesBloc>()..add(const GetFavoriteCurrenciesEvent.fetchFavoriteCurrencies())),
-        BlocProvider(create: (_) => sl<AddCurrencyToFavoriteBloc>()),
-        BlocProvider(create: (_) => sl<DeleteCurrencyFromFavoriteBloc>()),
-      ],
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: MultiBlocListener(
-            listeners: [
-              BlocListener<AddCurrencyToFavoriteBloc, AddCurrencyToFavoriteState>(
-                listener: (context, state) => state.maybeWhen(
-                  success: (_) {
-                    _showSnackBar(context, 'Added to favorites!', isSuccess: true);
-                    _refreshData(context);
-                    return SizedBox();
-                  },
-                  error: (message) => _showSnackBar(context, 'Error adding to favorites: $message', isSuccess: false),
-                  orElse: () => SizedBox(),
-                ),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<AddCurrencyToFavoriteBloc, AddCurrencyToFavoriteState>(
+              listener: (context, state) => state.maybeWhen(
+                success: (_) {
+                  _showSnackBar(context, 'Added to favorites!', isSuccess: true);
+                  _refreshData(context);
+                  return SizedBox();
+                },
+                error: (message) => _showSnackBar(context, 'Error adding to favorites: $message', isSuccess: false),
+                orElse: () => SizedBox(),
               ),
-              BlocListener<DeleteCurrencyFromFavoriteBloc, DeleteCurrencyFromFavoriteState>(
-                listener: (context, state) => state.maybeWhen(
-                  success: (_) {
-                    _showSnackBar(context, 'Removed from favorites!', isSuccess: true);
-                    _refreshData(context);
-                    return SizedBox();
-                  },
-                  error: (message) => _showSnackBar(context, 'Error removing from favorites: $message', isSuccess: false),
-                  orElse: () => SizedBox(),
-                ),
+            ),
+            BlocListener<DeleteCurrencyFromFavoriteBloc, DeleteCurrencyFromFavoriteState>(
+              listener: (context, state) => state.maybeWhen(
+                success: (_) {
+                  _showSnackBar(context, 'Removed from favorites!', isSuccess: true);
+                  _refreshData(context);
+                  return SizedBox();
+                },
+                error: (message) => _showSnackBar(context, 'Error removing from favorites: $message', isSuccess: false),
+                orElse: () => SizedBox(),
               ),
-            ],
-            child: BlocBuilder<CurrencyBloc, CurrencyState>(
-              builder: (context, currencyState) {
-                return currencyState.when(
-                  initial: () => const SizedBox.shrink(),
-                  loading: () => const ShimmerList(),
-                  loaded: (currencies) => BlocBuilder<GetFavoriteCurrenciesBloc, GetFavoriteCurrenciesState>(
-                    builder: (context, favoriteState) {
-                      final favorites = favoriteState.maybeWhen(
-                        success: (favorites) => favorites,
-                        orElse: () => <FavoriteCurrencyEntity>[],
-                      );
+            ),
+          ],
+          child: BlocBuilder<CurrencyBloc, CurrencyState>(
+            builder: (context, currencyState) {
+              return currencyState.when(
+                initial: () => const SizedBox.shrink(),
+                loading: () => const ShimmerList(),
+                loaded: (currencies) => BlocBuilder<GetFavoriteCurrenciesBloc, GetFavoriteCurrenciesState>(
+                  builder: (context, favoriteState) {
+                    final favorites = favoriteState.maybeWhen(
+                      success: (favorites) => favorites,
+                      orElse: () => <FavoriteCurrencyEntity>[],
+                    );
 
-                      final favoriteCurrencies = currencies.where((c) => favorites.any((f) => f.cryptocurrencyId == c.id)).toList();
-                      final otherCurrencies = currencies.where((c) => !favorites.any((f) => f.cryptocurrencyId == c.id)).toList();
+                    final favoriteCurrencies = currencies.where((c) => favorites.any((f) => f.cryptocurrencyId == c.id)).toList();
+                    final otherCurrencies = currencies.where((c) => !favorites.any((f) => f.cryptocurrencyId == c.id)).toList();
 
-                      return ListView(
-                        children: [
-                          if (favoriteCurrencies.isNotEmpty) ...[
-                            const SectionHeader(title: 'Favorite Currencies'),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: favoriteCurrencies.length,
-                              itemBuilder: (_, index) => CurrencyItem(
-                                currency: favoriteCurrencies[index],
-                                favorites: favorites,
-                                onFavoriteToggle: (currency, favoriteId) => _toggleFavorite(context, currency, favoriteId),
-                              ),
-                            ),
-                            const SectionDivider(),
-                          ],
-                          const SectionHeader(title: 'All Currencies'),
+                    return ListView(
+                      children: [
+                        if (favoriteCurrencies.isNotEmpty) ...[
+                          const SectionHeader(title: 'Favorite Currencies'),
                           ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: favoriteCurrencies.isNotEmpty ? otherCurrencies.length : currencies.length,
+                            itemCount: favoriteCurrencies.length,
                             itemBuilder: (_, index) => CurrencyItem(
-                              currency: favoriteCurrencies.isNotEmpty ? otherCurrencies[index] : currencies[index],
+                              currency: favoriteCurrencies[index],
                               favorites: favorites,
                               onFavoriteToggle: (currency, favoriteId) => _toggleFavorite(context, currency, favoriteId),
                             ),
                           ),
+                          const SectionDivider(),
                         ],
-                      );
-                    },
-                  ),
-                  error: (message) => ErrorMessage(message: message),
-                );
-              },
-            ),
+                        const SectionHeader(title: 'All Currencies'),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: favoriteCurrencies.isNotEmpty ? otherCurrencies.length : currencies.length,
+                          itemBuilder: (_, index) => CurrencyItem(
+                            currency: favoriteCurrencies.isNotEmpty ? otherCurrencies[index] : currencies[index],
+                            favorites: favorites,
+                            onFavoriteToggle: (currency, favoriteId) => _toggleFavorite(context, currency, favoriteId),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                error: (message) => ErrorMessage(message: message),
+              );
+            },
           ),
         ),
       ),

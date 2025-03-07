@@ -46,76 +46,73 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<LoginBloc>(),
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.brightness_6, color: Theme.of(context).iconTheme.color),
-              onPressed: () => context.read<ThemeCubit>().toggleTheme(),
-            ),
-          ],
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: BlocConsumer<LoginBloc, LoginState>(
-              listener: (context, state) {
-                state.when(
-                  initial: () {},
-                  loading: () {},
-                  success: (loginEntity) {
-                    _storageService.saveToken(loginEntity.token);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          UIConstants.loginSuccessMessage,
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.brightness_6, color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
+          ),
+        ],
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: BlocConsumer<LoginBloc, LoginState>(
+            listener: (context, state) {
+              state.when(
+                initial: () {},
+                loading: () {},
+                success: (loginEntity) {
+                  _storageService.saveToken(loginEntity.token);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        UIConstants.loginSuccessMessage,
+                      ),
+                    ),
+                  );
+                  context.goNamed('home');
+                },
+                error: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${UIConstants.errorMessagePrefix}: $message'),
+                    ),
+                  );
+                },
+              );
+            },
+            builder: (context, state) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppNameSection(),
+                  const SizedBox(height: 40),
+                  FormSection(
+                    validation: _validation,
+                    emailController: _emailController,
+                    passwordController: _passwordController,
+                  ),
+                  const SizedBox(height: 30),
+                  ButtonSection(
+                    validation: _validation,
+                    state: state,
+                    onLoginPressed: () {
+                      context.read<LoginBloc>().add(
+                        LoginEvent.loginSubmitted(
+                          email: _emailController.text,
+                          password: _passwordController.text,
                         ),
-                      ),
-                    );
-                    context.goNamed('home');
-                  },
-                  error: (message) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('${UIConstants.errorMessagePrefix}: $message'),
-                      ),
-                    );
-                  },
-                );
-              },
-              builder: (context, state) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AppNameSection(),
-                    const SizedBox(height: 40),
-                    FormSection(
-                      validation: _validation,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                    ),
-                    const SizedBox(height: 30),
-                    ButtonSection(
-                      validation: _validation,
-                      state: state,
-                      onLoginPressed: () {
-                        context.read<LoginBloc>().add(
-                          LoginEvent.loginSubmitted(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                );
-              },
-            ),
+                      );
+                    },
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

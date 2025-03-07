@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: theme.scaffoldBackgroundColor,
         leading: IconButton(
         icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
-        onPressed: () => context.pop(),
+        onPressed: () => context.goNamed('home'),
         ),
         ),body: Column(
       children: [

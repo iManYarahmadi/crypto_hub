@@ -142,9 +142,8 @@ void setupDependencies() {
     () => UserInformationUseCase(sl<UserInformationRepository>()),
   );
 
-  sl.registerLazySingleton<UserInformationBloc>(
-    () => UserInformationBloc(sl<UserInformationUseCase>()),
-  );
+ sl.registerFactory<UserInformationBloc>(
+          () => UserInformationBloc(sl<UserInformationUseCase>()));
 
   //
 
@@ -164,9 +163,8 @@ void setupDependencies() {
   sl.registerLazySingleton<UpdateUserPhoneUseCase>(
     () => UpdateUserPhoneUseCase(sl<UpdateUserPhoneRepository>()),
   );
-  sl.registerLazySingleton<UpdateUserPhoneBloc>(
-    () => UpdateUserPhoneBloc(sl<UpdateUserPhoneUseCase>()),
-  );
+  sl.registerFactory<UpdateUserPhoneBloc>(
+          () => UpdateUserPhoneBloc(sl<UpdateUserPhoneUseCase>()));
   //Theme
   sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }
