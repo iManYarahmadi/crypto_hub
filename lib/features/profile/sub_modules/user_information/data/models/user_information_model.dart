@@ -14,7 +14,10 @@ class UserInformationModel with _$UserInformationModel {
     @JsonKey(name: 'name') @Default("") String name,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'email') @Default("") String email,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'phone_number') @Default("") String phoneNumber,
   }) = _UserInformationModel;
 
-  factory UserInformationModel.fromJson(Map<String, dynamic> json) => _$UserInformationModelFromJson(json);
+  factory UserInformationModel.fromJson(Map<String, dynamic> json) =>
+      _$UserInformationModelFromJson(json);
 }

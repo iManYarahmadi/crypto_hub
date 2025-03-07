@@ -13,18 +13,8 @@ class UserInformationSection extends StatelessWidget {
     final theme = Theme.of(context);
     return BlocProvider(
       create: (_) => sl<UserInformationBloc>()..add(const UserInformationEvent.fetchUserInformation()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Profile'),
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: theme.scaffoldBackgroundColor,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ),
-        body: Padding(
+      child:
+         Padding(
           padding: const EdgeInsets.all(16.0),
           child: BlocBuilder<UserInformationBloc, UserInformationState>(
             builder: (context, state) {
@@ -93,7 +83,7 @@ class UserInformationSection extends StatelessWidget {
             },
           ),
         ),
-      ),
+
     );
   }
 }
