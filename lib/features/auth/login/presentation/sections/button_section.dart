@@ -1,6 +1,6 @@
 import 'package:cryptohub/core/utils/ui_constants.dart';
 import 'package:cryptohub/features/auth/login/presentation/blocs/login/login_state.dart';
-import 'package:cryptohub/presentation/validation/login_validation.dart';
+import 'package:cryptohub/core/utils/validators/login_validation.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSection extends StatelessWidget {

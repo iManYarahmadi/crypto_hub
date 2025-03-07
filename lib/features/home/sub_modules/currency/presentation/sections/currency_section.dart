@@ -1,8 +1,8 @@
 import 'package:cryptohub/core/di/injection.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/domain/entities/currency_entity.dart';
-import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/login/currency_bloc.dart';
-import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/login/currency_event.dart';
-import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/login/currency_state.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/currency/currency_bloc.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/currency/currency_event.dart';
+import 'package:cryptohub/features/home/sub_modules/currency/presentation/blocs/currency/currency_state.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/presentation/widgets/currency_item_widget.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/presentation/widgets/error_message.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/presentation/widgets/section_divider.dart' show SectionDivider;
