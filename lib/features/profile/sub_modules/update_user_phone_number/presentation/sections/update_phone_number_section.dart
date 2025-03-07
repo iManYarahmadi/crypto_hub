@@ -84,7 +84,7 @@ class _PhoneNumberSectionState extends State<PhoneNumberSection> {
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         labelText: 'Phone Number',
-                        hintText: '09121251212',
+                        hintText: 'Enter Your Phone Number',
                         labelStyle: TextStyle(color: theme.colorScheme.primary),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
