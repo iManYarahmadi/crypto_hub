@@ -16,11 +16,14 @@ final GoRouter appRouter = GoRouter(
       path: '/home',
       name: 'home',
       builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          path: '/profile',
+          name: 'profile',
+          builder: (context, state) => const ProfileScreen(),
+        ),
+      ]
     ),
-    GoRoute(
-      path: '/profile',
-      name: 'profile',
-      builder: (context, state) => const ProfileScreen(),
-    ),
+
   ],
 );

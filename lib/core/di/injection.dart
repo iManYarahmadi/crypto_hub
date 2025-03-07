@@ -1,5 +1,6 @@
 import 'package:cryptohub/core/services/api_service.dart';
 import 'package:cryptohub/core/services/storage_service.dart';
+import 'package:cryptohub/core/utils/validators/phone_number_validator.dart';
 import 'package:cryptohub/features/auth/login/data/datasources/login_remote_datasource.dart';
 import 'package:cryptohub/features/auth/login/data/repositories/login_repository_impl.dart';
 import 'package:cryptohub/features/auth/login/domain/repositories/login_repository.dart';
@@ -25,6 +26,11 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_fav
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/repositories/get_favorite_currencies_repository.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/usecases/get_favorite_currencies_usecase.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/presentation/blocs/get_favorite_currency/get_favorite_currencies_bloc.dart';
+import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/data/datasources/update_user_phone_remote_datasource.dart';
+import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/data/repositories/update_user_phone_repository_impl.dart';
+import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/domain/repositories/update_user_phone_repository.dart';
+import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/domain/usecases/update_user_phone_usecase.dart';
+import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/presentation/blocs/add_currency_to_favorite/update_user_phone_bloc.dart';
 import 'package:cryptohub/features/profile/sub_modules/user_information/data/datasources/user_information_remote_datasource.dart';
 import 'package:cryptohub/features/profile/sub_modules/user_information/data/repositories/user_information_repository_impl.dart';
 import 'package:cryptohub/features/profile/sub_modules/user_information/domain/repositories/user_information_repository.dart';
@@ -124,20 +130,42 @@ void setupDependencies() {
   );
   //get user information
   sl.registerLazySingleton<UserInformationRemoteDataSource>(
-        () => UserInformationRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
+    () =>
+        UserInformationRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
   );
 
   sl.registerLazySingleton<UserInformationRepository>(
-        () => UserInformationRepositoryImpl(sl<UserInformationRemoteDataSource>()),
+    () => UserInformationRepositoryImpl(sl<UserInformationRemoteDataSource>()),
   );
 
   sl.registerLazySingleton<UserInformationUseCase>(
-        () => UserInformationUseCase(sl<UserInformationRepository>()),
+    () => UserInformationUseCase(sl<UserInformationRepository>()),
   );
 
-//
   sl.registerLazySingleton<UserInformationBloc>(
-        () => UserInformationBloc(sl<UserInformationUseCase>()),
+    () => UserInformationBloc(sl<UserInformationUseCase>()),
+  );
+
+  //
+
+  sl.registerFactory<PhoneNumberValidator>(() => PhoneNumberValidator());
+
+  sl.registerLazySingleton<UpdateUserPhoneRemoteDataSource>(
+    () => UpdateUserPhoneRemoteDataSourceImpl(
+      sl<ApiService>(),
+      sl<StorageService>(),
+    ),
+  );
+
+  sl.registerLazySingleton<UpdateUserPhoneRepository>(
+    () => UpdateUserPhoneRepositoryImpl(sl<UpdateUserPhoneRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<UpdateUserPhoneUseCase>(
+    () => UpdateUserPhoneUseCase(sl<UpdateUserPhoneRepository>()),
+  );
+  sl.registerLazySingleton<UpdateUserPhoneBloc>(
+    () => UpdateUserPhoneBloc(sl<UpdateUserPhoneUseCase>()),
   );
   //Theme
   sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());

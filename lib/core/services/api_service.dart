@@ -6,6 +6,7 @@ import 'package:cryptohub/core/error/exceptions.dart';
 
 
 
+
 class ApiService {
   final Dio dio;
 
@@ -67,6 +68,25 @@ class ApiService {
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options ?? Options(),
+      );
+      return response;
+    } on DioException catch (e) {
+      throw ServerException('Server error: ${e.message} - ${e.response?.statusCode}');
+    } catch (e) {
+      throw ServerException('Unknown error: $e');
+    }
+  }
+
+  Future<Response> put(
+      String path, {
+        Map<String, dynamic>? data,
+        Options? options,
+      }) async {
+    try {
+      final response = await dio.put(
+        path,
+        data: data,
         options: options ?? Options(),
       );
       return response;
