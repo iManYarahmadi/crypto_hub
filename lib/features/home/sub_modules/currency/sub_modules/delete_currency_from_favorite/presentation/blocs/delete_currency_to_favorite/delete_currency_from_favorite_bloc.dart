@@ -5,19 +5,21 @@ import 'delete_currency_from_favorite_event.dart';
 import 'delete_currency_from_favorite_state.dart';
 
 class DeleteCurrencyFromFavoriteBloc
-    extends Bloc<DeleteCurrencyFromFavoriteEvent, DeleteCurrencyFromFavoriteState> {
+    extends
+        Bloc<DeleteCurrencyFromFavoriteEvent, DeleteCurrencyFromFavoriteState> {
   final DeleteCurrencyFromFavoriteUseCase deleteCurrencyFromFavoriteUseCase;
 
   DeleteCurrencyFromFavoriteBloc(this.deleteCurrencyFromFavoriteUseCase)
-      : super(const DeleteCurrencyFromFavoriteState.initial()) {
+    : super(const DeleteCurrencyFromFavoriteState.initial()) {
     on<DeleteCurrencyFromFavoriteEvent>((event, emit) async {
       await event.when(
         deleteCurrencyFromFavorite: (params) async {
           emit(const DeleteCurrencyFromFavoriteState.loading());
           final result = await deleteCurrencyFromFavoriteUseCase(params);
           result.fold(
-                (failure) => emit(DeleteCurrencyFromFavoriteState.error(failure.message)),
-                (entity) => emit(DeleteCurrencyFromFavoriteState.success(entity)),
+            (failure) =>
+                emit(DeleteCurrencyFromFavoriteState.error(failure.message)),
+            (entity) => emit(DeleteCurrencyFromFavoriteState.success(entity)),
           );
         },
       );

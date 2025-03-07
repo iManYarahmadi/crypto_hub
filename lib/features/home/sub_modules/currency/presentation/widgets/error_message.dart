@@ -11,7 +11,9 @@ class ErrorMessage extends StatelessWidget {
     return Center(
       child: Text(
         message,
-        style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.error),
+        style: theme.textTheme.bodyLarge?.copyWith(
+          color: theme.colorScheme.error,
+        ),
       ),
     );
   }

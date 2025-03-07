@@ -1,4 +1,3 @@
-import 'dart:developer' as developer show log;
 import 'package:cryptohub/core/error/failure.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/datasources/add_currency_to_favorite_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/data/mappers/add_currency_to_favorite_mapper.dart';
@@ -9,14 +8,16 @@ import 'package:dartz/dartz.dart';
 
 import 'package:dio/dio.dart';
 
-
-class AddCurrencyToFavoriteRepositoryImpl implements AddCurrencyToFavoriteRepository {
+class AddCurrencyToFavoriteRepositoryImpl
+    implements AddCurrencyToFavoriteRepository {
   final AddCurrencyToFavoriteRemoteDataSource remoteDataSource;
 
   AddCurrencyToFavoriteRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, AddCurrencyToFavoriteEntity>> addCurrencyToFavorite(AddCurrencyToFavoriteParams params) async {
+  Future<Either<Failure, AddCurrencyToFavoriteEntity>> addCurrencyToFavorite(
+    AddCurrencyToFavoriteParams params,
+  ) async {
     try {
       final model = await remoteDataSource.addCurrencyToFavorite(params);
       return Right(AddCurrencyToFavoriteMapper.toEntity(model));

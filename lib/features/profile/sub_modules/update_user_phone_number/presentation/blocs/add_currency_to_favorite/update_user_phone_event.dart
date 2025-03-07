@@ -5,5 +5,7 @@ part 'update_user_phone_event.freezed.dart';
 
 @freezed
 class UpdateUserPhoneEvent with _$UpdateUserPhoneEvent {
-  const factory UpdateUserPhoneEvent.updatePhone(UpdateUserPhoneParams updateUserPhoneParams) = _UpdatePhone;
+  const factory UpdateUserPhoneEvent.updatePhone(
+    UpdateUserPhoneParams updateUserPhoneParams,
+  ) = _UpdatePhone;
 }

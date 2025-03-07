@@ -13,7 +13,9 @@ class UpdateUserPhoneRepositoryImpl implements UpdateUserPhoneRepository {
   UpdateUserPhoneRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, UpdateUserPhoneEntity>> updateUserPhone(UpdateUserPhoneParams params) async {
+  Future<Either<Failure, UpdateUserPhoneEntity>> updateUserPhone(
+    UpdateUserPhoneParams params,
+  ) async {
     try {
       final model = await remoteDataSource.updateUserPhone(params);
       return Right(UpdateUserPhoneMapper.toEntity(model));

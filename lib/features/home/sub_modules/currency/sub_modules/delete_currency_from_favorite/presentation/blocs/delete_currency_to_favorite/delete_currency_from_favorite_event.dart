@@ -2,8 +2,10 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'delete_currency_from_favorite_event.freezed.dart';
+
 @freezed
 class DeleteCurrencyFromFavoriteEvent with _$DeleteCurrencyFromFavoriteEvent {
   const factory DeleteCurrencyFromFavoriteEvent.deleteCurrencyFromFavorite(
-      DeleteCurrencyFromFavoriteParams params) = _DeleteCurrencyFromFavorite;
+    DeleteCurrencyFromFavoriteParams params,
+  ) = _DeleteCurrencyFromFavorite;
 }

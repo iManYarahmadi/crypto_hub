@@ -5,14 +5,16 @@ import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/
 import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/domain/repositories/update_user_phone_repository.dart';
 import 'package:dartz/dartz.dart';
 
-
-class UpdateUserPhoneUseCase implements BaseUseCase<UpdateUserPhoneEntity, UpdateUserPhoneParams> {
+class UpdateUserPhoneUseCase
+    implements BaseUseCase<UpdateUserPhoneEntity, UpdateUserPhoneParams> {
   final UpdateUserPhoneRepository repository;
 
   UpdateUserPhoneUseCase(this.repository);
 
   @override
-  Future<Either<Failure, UpdateUserPhoneEntity>> call(UpdateUserPhoneParams params) async {
+  Future<Either<Failure, UpdateUserPhoneEntity>> call(
+    UpdateUserPhoneParams params,
+  ) async {
     return await repository.updateUserPhone(params);
   }
 }

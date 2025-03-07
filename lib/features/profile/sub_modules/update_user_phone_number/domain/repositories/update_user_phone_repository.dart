@@ -4,5 +4,7 @@ import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/
 import 'package:dartz/dartz.dart';
 
 abstract class UpdateUserPhoneRepository {
-  Future<Either<Failure, UpdateUserPhoneEntity>> updateUserPhone(UpdateUserPhoneParams params);
+  Future<Either<Failure, UpdateUserPhoneEntity>> updateUserPhone(
+    UpdateUserPhoneParams params,
+  );
 }

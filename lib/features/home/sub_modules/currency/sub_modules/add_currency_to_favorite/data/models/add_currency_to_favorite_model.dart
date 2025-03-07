@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'add_currency_to_favorite_model.freezed.dart';
 part 'add_currency_to_favorite_model.g.dart';
 
@@ -20,5 +19,3 @@ class AddCurrencyToFavoriteModel with _$AddCurrencyToFavoriteModel {
   factory AddCurrencyToFavoriteModel.fromJson(Map<String, dynamic> json) =>
       _$AddCurrencyToFavoriteModelFromJson(json);
 }
-
-

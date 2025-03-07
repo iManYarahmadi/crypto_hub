@@ -7,7 +7,8 @@ part 'delete_currency_from_favorite_state.freezed.dart';
 class DeleteCurrencyFromFavoriteState with _$DeleteCurrencyFromFavoriteState {
   const factory DeleteCurrencyFromFavoriteState.initial() = _Initial;
   const factory DeleteCurrencyFromFavoriteState.loading() = _Loading;
-  const factory DeleteCurrencyFromFavoriteState.success(DeleteCurrencyFromFavoriteEntity entity) =
-  _Success;
+  const factory DeleteCurrencyFromFavoriteState.success(
+    DeleteCurrencyFromFavoriteEntity entity,
+  ) = _Success;
   const factory DeleteCurrencyFromFavoriteState.error(String message) = _Error;
 }

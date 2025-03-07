@@ -1,4 +1,3 @@
-
 import 'package:cryptohub/features/profile/sub_modules/user_information/data/models/user_information_model.dart';
 import 'package:cryptohub/features/profile/sub_modules/user_information/domain/entities/user_information_entity.dart';
 

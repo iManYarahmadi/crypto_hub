@@ -7,14 +7,16 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:dartz/dartz.dart';
 
 import 'package:dio/dio.dart';
-class DeleteCurrencyFromFavoriteRepositoryImpl implements DeleteCurrencyFromFavoriteRepository {
+
+class DeleteCurrencyFromFavoriteRepositoryImpl
+    implements DeleteCurrencyFromFavoriteRepository {
   final DeleteCurrencyFromFavoriteRemoteDataSource remoteDataSource;
 
   DeleteCurrencyFromFavoriteRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, DeleteCurrencyFromFavoriteEntity>> deleteCurrencyFromFavorite(
-      DeleteCurrencyFromFavoriteParams params) async {
+  Future<Either<Failure, DeleteCurrencyFromFavoriteEntity>>
+  deleteCurrencyFromFavorite(DeleteCurrencyFromFavoriteParams params) async {
     try {
       final model = await remoteDataSource.deleteCurrencyFromFavorite(params);
       final entity = DeleteCurrencyFromFavoriteMapper.toEntity(model);

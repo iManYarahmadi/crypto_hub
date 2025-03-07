@@ -15,6 +15,8 @@ class CurrencyRemoteDataSource {
       '/api:awZizgY2/cryptocurrency',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
-    return (response.data as List).map((json) => CurrencyModel.fromJson(json)).toList();
+    return (response.data as List)
+        .map((json) => CurrencyModel.fromJson(json))
+        .toList();
   }
 }

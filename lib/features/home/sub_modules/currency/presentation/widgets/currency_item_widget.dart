@@ -4,11 +4,11 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_fav
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class CurrencyItem extends StatelessWidget {
   final CurrencyEntity currency;
   final List<FavoriteCurrencyEntity> favorites;
-  final void Function(CurrencyEntity currency, int? favoriteId) onFavoriteToggle;
+  final void Function(CurrencyEntity currency, int? favoriteId)
+  onFavoriteToggle;
 
   const CurrencyItem({
     super.key,
@@ -20,7 +20,10 @@ class CurrencyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final favoriteId = favorites.firstWhereOrNull((f) => f.cryptocurrencyId == currency.id)?.id;
+    final favoriteId =
+        favorites
+            .firstWhereOrNull((f) => f.cryptocurrencyId == currency.id)
+            ?.id;
 
     return Card(
       elevation: 4,
@@ -28,14 +31,20 @@ class CurrencyItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: theme.cardColor,
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 8.0,
+        ),
         leading: SvgPicture.network(
           currency.iconAddress,
           width: 40,
           height: 40,
-          placeholderBuilder: (_) => CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
-          ),
+          placeholderBuilder:
+              (_) => CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  theme.colorScheme.primary,
+                ),
+              ),
           errorBuilder: (context, error, stackTrace) {
             return SizedBox(
               height: 40,
@@ -71,8 +80,13 @@ class CurrencyItem extends StatelessWidget {
             const SizedBox(width: 8),
             IconButton(
               icon: Icon(
-                currency.isFavorite == true ? Icons.favorite : Icons.favorite_border,
-                color: currency.isFavorite == true ? Colors.redAccent : theme.colorScheme.onSurface.withOpacity(0.5),
+                currency.isFavorite == true
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color:
+                    currency.isFavorite == true
+                        ? Colors.redAccent
+                        : theme.colorScheme.onSurface.withOpacity(0.5),
               ),
               onPressed: () => onFavoriteToggle(currency, favoriteId),
             ),

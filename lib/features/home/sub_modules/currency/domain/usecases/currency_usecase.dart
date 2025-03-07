@@ -4,7 +4,8 @@ import 'package:cryptohub/features/home/sub_modules/currency/domain/entities/cur
 import 'package:cryptohub/features/home/sub_modules/currency/domain/repositories/currency_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class GetCurrenciesUseCase implements BaseUseCase<List<CurrencyEntity>, NoParams> {
+class GetCurrenciesUseCase
+    implements BaseUseCase<List<CurrencyEntity>, NoParams> {
   final CurrencyRepository repository;
 
   GetCurrenciesUseCase(this.repository);

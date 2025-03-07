@@ -6,16 +6,15 @@ import 'package:cryptohub/features/auth/login/domain/repositories/login_reposito
 import 'package:cryptohub/features/auth/login/domain/usecases/login_usecase.dart';
 import 'package:cryptohub/features/auth/login/presentation/blocs/login/login_bloc.dart';
 
-void loginSetUpDependencies(){
+void loginSetUpDependencies() {
   sl.registerLazySingleton<LoginRemoteDataSource>(
-        () => LoginRemoteDataSource(sl<ApiService>()),
+    () => LoginRemoteDataSource(sl<ApiService>()),
   );
   sl.registerLazySingleton<LoginRepository>(
-        () => LoginRepositoryImpl(remoteDataSource: sl<LoginRemoteDataSource>()),
+    () => LoginRepositoryImpl(remoteDataSource: sl<LoginRemoteDataSource>()),
   );
   sl.registerLazySingleton<LoginUseCase>(
-        () => LoginUseCase(sl<LoginRepository>()),
+    () => LoginUseCase(sl<LoginRepository>()),
   );
   sl.registerFactory<LoginBloc>(() => LoginBloc(sl<LoginUseCase>()));
-
 }

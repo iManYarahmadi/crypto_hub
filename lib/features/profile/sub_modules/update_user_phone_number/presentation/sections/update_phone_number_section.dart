@@ -43,103 +43,130 @@ class _PhoneNumberSectionState extends State<PhoneNumberSection> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: BlocConsumer<UpdateUserPhoneBloc, UpdateUserPhoneState>(
-          listener: (context, updateState) {
-            updateState.whenOrNull(
-              success: (userInfo) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Your number is ${userInfo.phoneNumber}, ${userInfo.name}!'),
-                    backgroundColor: theme.colorScheme.primary,
+        listener: (context, updateState) {
+          updateState.whenOrNull(
+            success: (userInfo) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Your number is ${userInfo.phoneNumber}, ${userInfo.name}!',
                   ),
-                );
-              },
-              error: (message) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                    backgroundColor: theme.colorScheme.error,
-                  ),
-                );
-              },
-            );
-          },
-          builder: (context, updateState) {
-            final phoneNumber = updateState.whenOrNull(
-              success: (userInfo) => userInfo.phoneNumber,
-            );
-            final isLoading = updateState.whenOrNull(loading: () => true) ?? false;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+                  backgroundColor: theme.colorScheme.primary,
+                ),
+              );
+            },
+            error: (message) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                  backgroundColor: theme.colorScheme.error,
+                ),
+              );
+            },
+          );
+        },
+        builder: (context, updateState) {
+          final phoneNumber = updateState.whenOrNull(
+            success: (userInfo) => userInfo.phoneNumber,
+          );
+          final isLoading =
+              updateState.whenOrNull(loading: () => true) ?? false;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Phone Number Submission',
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+              SizedBox(height: 15),
+              StreamBuilder<String>(
+                stream: _validators.phoneNumberStream,
+                builder: (context, snapshot) {
+                  return TextField(
+                    controller: _phoneController,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      hintText: 'Enter Your Phone Number',
+                      labelStyle: TextStyle(color: theme.colorScheme.primary),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: theme.colorScheme.onSurface.withOpacity(0.3),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                      errorText:
+                          snapshot.hasError ? snapshot.error.toString() : null,
+                    ),
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              if (phoneNumber != null)
                 Text(
-                  'Phone Number Submission',
-                  style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.primary),
-                ),
-                SizedBox(height: 15,),
-                StreamBuilder<String>(
-                  stream: _validators.phoneNumberStream,
-                  builder: (context, snapshot) {
-                    return TextField(
-                      controller: _phoneController,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        hintText: 'Enter Your Phone Number',
-                        labelStyle: TextStyle(color: theme.colorScheme.primary),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: theme.colorScheme.primary),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: theme.colorScheme.onSurface.withOpacity(0.3)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: theme.colorScheme.primary),
-                        ),
-                        errorText: snapshot.hasError ? snapshot.error.toString() : null,
-                      ),
-                      style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface),
-                    );
-                  },
-                ),
-                const SizedBox(height: 8),
-                if (phoneNumber != null)
-                  Text(
-                    'Saved Number: $phoneNumber',
-                    style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface),
+                  'Saved Number: $phoneNumber',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurface,
                   ),
-                const SizedBox(height: 16),
-                StreamBuilder<String>(
-                  stream: _validators.phoneNumberStream,
-                  builder: (context, snapshot) {
-                    return ElevatedButton(
-                      onPressed: isLoading || !snapshot.hasData || snapshot.hasError
-                          ? null
-                          : () {
-                        context.read<UpdateUserPhoneBloc>().add(
-                          UpdateUserPhoneEvent.updatePhone(
-                            UpdateUserPhoneParams(phoneNumber: _phoneController.text),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.primary,
-                        foregroundColor: theme.colorScheme.onPrimary,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                      ),
-                      child: isLoading
-                          ? const CircularProgressIndicator(color: Colors.white)
-                          : const Text('Save Phone Number'),
-                    );
-                  },
                 ),
-              ],
-            );
-          },
-        ),
+              const SizedBox(height: 16),
+              StreamBuilder<String>(
+                stream: _validators.phoneNumberStream,
+                builder: (context, snapshot) {
+                  return ElevatedButton(
+                    onPressed:
+                        isLoading || !snapshot.hasData || snapshot.hasError
+                            ? null
+                            : () {
+                              context.read<UpdateUserPhoneBloc>().add(
+                                UpdateUserPhoneEvent.updatePhone(
+                                  UpdateUserPhoneParams(
+                                    phoneNumber: _phoneController.text,
+                                  ),
+                                ),
+                              );
+                            },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.primary,
+                      foregroundColor: theme.colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
+                    ),
+                    child:
+                        isLoading
+                            ? const CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                            : const Text('Save Phone Number'),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

@@ -7,18 +7,21 @@ import 'package:dartz/dartz.dart';
 import 'user_information_event.dart';
 import 'user_information_state.dart';
 
-class UserInformationBloc extends Bloc<UserInformationEvent, UserInformationState> {
+class UserInformationBloc
+    extends Bloc<UserInformationEvent, UserInformationState> {
   final UserInformationUseCase getUserInformationUseCase;
 
-  UserInformationBloc(this.getUserInformationUseCase) : super(const UserInformationState.initial()) {
+  UserInformationBloc(this.getUserInformationUseCase)
+    : super(const UserInformationState.initial()) {
     on<UserInformationEvent>((event, emit) async {
       await event.when(
         fetchUserInformation: () async {
           emit(const UserInformationState.loading());
-          final Either<Failure, UserInformationEntity> result = await getUserInformationUseCase(NoParams());
+          final Either<Failure, UserInformationEntity> result =
+              await getUserInformationUseCase(NoParams());
           result.fold(
-                (failure) => emit(UserInformationState.error(failure.message)),
-                (userInfo) => emit(UserInformationState.loaded(userInfo)),
+            (failure) => emit(UserInformationState.error(failure.message)),
+            (userInfo) => emit(UserInformationState.loaded(userInfo)),
           );
         },
       );

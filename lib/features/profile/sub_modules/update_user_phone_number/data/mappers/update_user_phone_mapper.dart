@@ -14,8 +14,6 @@ class UpdateUserPhoneMapper {
   }
 
   static Map<String, dynamic> toJson(UpdateUserPhoneParams params) {
-    return {
-      'phone_number': params.phoneNumber,
-    };
+    return {'phone_number': params.phoneNumber};
   }
 }

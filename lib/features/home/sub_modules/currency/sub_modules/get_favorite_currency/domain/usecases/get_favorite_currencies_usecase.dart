@@ -4,14 +4,16 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_fav
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/get_favorite_currency/domain/repositories/get_favorite_currencies_repository.dart';
 import 'package:dartz/dartz.dart';
 
-
-class GetFavoriteCurrenciesUseCase implements BaseUseCase<List<FavoriteCurrencyEntity>, NoParams> {
+class GetFavoriteCurrenciesUseCase
+    implements BaseUseCase<List<FavoriteCurrencyEntity>, NoParams> {
   final GetFavoriteCurrenciesRepository repository;
 
   GetFavoriteCurrenciesUseCase(this.repository);
 
   @override
-  Future<Either<Failure, List<FavoriteCurrencyEntity>>> call(NoParams params) async {
+  Future<Either<Failure, List<FavoriteCurrencyEntity>>> call(
+    NoParams params,
+  ) async {
     return await repository.getFavoriteCurrencies();
   }
 }

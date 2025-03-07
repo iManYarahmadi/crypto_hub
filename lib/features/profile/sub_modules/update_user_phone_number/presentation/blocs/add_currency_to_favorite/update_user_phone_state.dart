@@ -7,6 +7,7 @@ part 'update_user_phone_state.freezed.dart';
 class UpdateUserPhoneState with _$UpdateUserPhoneState {
   const factory UpdateUserPhoneState.initial() = _Initial;
   const factory UpdateUserPhoneState.loading() = _Loading;
-  const factory UpdateUserPhoneState.success(UpdateUserPhoneEntity userInfo) = _Success;
+  const factory UpdateUserPhoneState.success(UpdateUserPhoneEntity userInfo) =
+      _Success;
   const factory UpdateUserPhoneState.error(String message) = _Error;
 }

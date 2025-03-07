@@ -5,6 +5,7 @@ part 'add_currency_to_favorite_event.freezed.dart';
 
 @freezed
 class AddCurrencyToFavoriteEvent with _$AddCurrencyToFavoriteEvent {
-  const factory AddCurrencyToFavoriteEvent.addCurrencyToFavorite(AddCurrencyToFavoriteParams params) =
-  _AddCurrencyToFavorite;
+  const factory AddCurrencyToFavoriteEvent.addCurrencyToFavorite(
+    AddCurrencyToFavoriteParams params,
+  ) = _AddCurrencyToFavorite;
 }

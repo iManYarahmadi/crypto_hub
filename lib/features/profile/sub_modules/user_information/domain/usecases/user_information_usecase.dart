@@ -4,8 +4,8 @@ import 'package:cryptohub/features/profile/sub_modules/user_information/domain/e
 import 'package:cryptohub/features/profile/sub_modules/user_information/domain/repositories/user_information_repository.dart';
 import 'package:dartz/dartz.dart';
 
-
-class UserInformationUseCase implements BaseUseCase<UserInformationEntity, NoParams> {
+class UserInformationUseCase
+    implements BaseUseCase<UserInformationEntity, NoParams> {
   final UserInformationRepository repository;
 
   UserInformationUseCase(this.repository);

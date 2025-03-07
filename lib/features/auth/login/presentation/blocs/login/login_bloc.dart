@@ -13,10 +13,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await event.when(
         loginSubmitted: (email, password) async {
           emit(const LoginState.loading());
-          final result = await loginUseCase(LoginParamsModel(email: email, password: password));
+          final result = await loginUseCase(
+            LoginParamsModel(email: email, password: password),
+          );
           result.fold(
-                (failure) => emit(LoginState.error(failure.message)),
-                (loginEntity) => emit(LoginState.success(loginEntity)),
+            (failure) => emit(LoginState.error(failure.message)),
+            (loginEntity) => emit(LoginState.success(loginEntity)),
           );
         },
       );

@@ -1,4 +1,3 @@
-import 'dart:developer' as developer show log;
 import 'package:cryptohub/core/error/failure.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/data/datasources/currency_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/data/mappers/currency_mapper.dart';

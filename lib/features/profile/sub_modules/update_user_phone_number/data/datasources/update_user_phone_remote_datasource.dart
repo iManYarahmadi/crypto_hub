@@ -9,14 +9,17 @@ abstract class UpdateUserPhoneRemoteDataSource {
   Future<UserInformationModel> updateUserPhone(UpdateUserPhoneParams params);
 }
 
-class UpdateUserPhoneRemoteDataSourceImpl implements UpdateUserPhoneRemoteDataSource {
+class UpdateUserPhoneRemoteDataSourceImpl
+    implements UpdateUserPhoneRemoteDataSource {
   final ApiService apiService;
   final StorageService storageService;
 
   UpdateUserPhoneRemoteDataSourceImpl(this.apiService, this.storageService);
 
   @override
-  Future<UserInformationModel> updateUserPhone(UpdateUserPhoneParams params) async {
+  Future<UserInformationModel> updateUserPhone(
+    UpdateUserPhoneParams params,
+  ) async {
     final token = await storageService.getToken();
     final response = await apiService.put(
       '/api:0uinMmtC/user/{user_id}',

@@ -10,6 +10,7 @@ class DeleteCurrencyFromFavoriteParams with _$DeleteCurrencyFromFavoriteParams {
     @JsonKey(name: 'favorites_id') required int favoritesId,
   }) = _DeleteCurrencyFromFavoriteParams;
 
-  factory DeleteCurrencyFromFavoriteParams.fromJson(Map<String, dynamic> json) =>
-      _$DeleteCurrencyFromFavoriteParamsFromJson(json);
+  factory DeleteCurrencyFromFavoriteParams.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DeleteCurrencyFromFavoriteParamsFromJson(json);
 }

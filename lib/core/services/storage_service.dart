@@ -11,6 +11,7 @@ class StorageService {
   Future<String?> getToken() async {
     return await _storage.read(key: AppConstants.tokenKey);
   }
+
   Future<void> clearToken() async {
     await _storage.delete(key: AppConstants.tokenKey);
   }

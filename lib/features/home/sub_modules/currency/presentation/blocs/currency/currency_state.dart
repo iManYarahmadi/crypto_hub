@@ -1,7 +1,6 @@
 import 'package:cryptohub/features/home/sub_modules/currency/domain/entities/currency_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'currency_state.freezed.dart';
 
 @freezed

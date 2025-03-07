@@ -9,7 +9,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
 
-  const CustomTextField({super.key,
+  const CustomTextField({
+    super.key,
     required this.controller,
     required this.labelText,
     required this.hintText,
@@ -31,16 +32,20 @@ class CustomTextField extends StatelessWidget {
         errorText: errorText,
         prefixIcon: Icon(prefixIcon, color: Theme.of(context).primaryColor),
         filled: true,
-        fillColor: Theme.of(context).brightness == Brightness.light
-            ? Colors.grey[200]
-            : Colors.grey[800],
+        fillColor:
+            Theme.of(context).brightness == Brightness.light
+                ? Colors.grey[200]
+                : Colors.grey[800],
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+            width: 2,
+          ),
         ),
       ),
     );

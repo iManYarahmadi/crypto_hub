@@ -10,7 +10,10 @@ class ShimmerItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 8.0,
+        ),
         leading: Container(width: 40, height: 40, color: Colors.grey),
         title: Container(width: 100, height: 16, color: Colors.grey),
         subtitle: Container(width: 50, height: 12, color: Colors.grey),

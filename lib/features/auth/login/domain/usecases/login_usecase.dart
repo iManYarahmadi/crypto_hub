@@ -5,7 +5,6 @@ import 'package:cryptohub/features/auth/login/domain/entities/login_entity.dart'
 import 'package:cryptohub/features/auth/login/domain/repositories/login_repository.dart';
 import 'package:dartz/dartz.dart';
 
-
 class LoginUseCase implements BaseUseCase<LoginEntity, LoginParamsModel> {
   final LoginRepository repository;
 

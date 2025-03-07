@@ -9,20 +9,19 @@ class CurrencyModel with _$CurrencyModel {
     // ignore: invalid_annotation_target
     @JsonKey(name: 'id') required int id,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'created_at')  @Default(0) int createdAt,
+    @JsonKey(name: 'created_at') @Default(0) int createdAt,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'name')  @Default('') String name,
+    @JsonKey(name: 'name') @Default('') String name,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'price')  @Default(0.0) double price,
+    @JsonKey(name: 'price') @Default(0.0) double price,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'symbol')  @Default('') String symbol,
+    @JsonKey(name: 'symbol') @Default('') String symbol,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'icon_address')  @Default('') String iconAddress,
+    @JsonKey(name: 'icon_address') @Default('') String iconAddress,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'is_favorite') @Default(false) bool isFavorite,
   }) = _CurrencyModel;
 
-  factory CurrencyModel.fromJson(Map<String, dynamic> json) => _$CurrencyModelFromJson(json);
+  factory CurrencyModel.fromJson(Map<String, dynamic> json) =>
+      _$CurrencyModelFromJson(json);
 }
-
-

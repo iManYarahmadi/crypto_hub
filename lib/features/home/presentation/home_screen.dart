@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSurface,
             ),
             onPressed: () {
-             context.goNamed('profile');
+              context.goNamed('profile');
             },
             tooltip: 'Profile',
           ),

@@ -19,4 +19,3 @@ class FavoriteCurrencyModel with _$FavoriteCurrencyModel {
   factory FavoriteCurrencyModel.fromJson(Map<String, dynamic> json) =>
       _$FavoriteCurrencyModelFromJson(json);
 }
-

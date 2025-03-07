@@ -8,7 +8,8 @@ class FormSection extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
-  const FormSection({super.key,
+  const FormSection({
+    super.key,
     required this.validation,
     required this.emailController,
     required this.passwordController,

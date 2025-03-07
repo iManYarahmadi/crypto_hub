@@ -1,4 +1,5 @@
-import 'package:cryptohub/features/home/sub_modules/currency/data/models/currency_model.dart' show CurrencyModel;
+import 'package:cryptohub/features/home/sub_modules/currency/data/models/currency_model.dart'
+    show CurrencyModel;
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

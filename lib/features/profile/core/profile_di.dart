@@ -13,42 +13,44 @@ import 'package:cryptohub/features/profile/sub_modules/user_information/domain/r
 import 'package:cryptohub/features/profile/sub_modules/user_information/domain/usecases/user_information_usecase.dart';
 import 'package:cryptohub/features/profile/sub_modules/user_information/presentation/blocs/user_information/user_information_bloc.dart';
 
-void profileSetUpDependencies(){
+void profileSetUpDependencies() {
   ///get user information
   sl.registerLazySingleton<UserInformationRemoteDataSource>(
-        () =>
+    () =>
         UserInformationRemoteDataSource(sl<ApiService>(), sl<StorageService>()),
   );
 
   sl.registerLazySingleton<UserInformationRepository>(
-        () => UserInformationRepositoryImpl(sl<UserInformationRemoteDataSource>()),
+    () => UserInformationRepositoryImpl(sl<UserInformationRemoteDataSource>()),
   );
 
   sl.registerLazySingleton<UserInformationUseCase>(
-        () => UserInformationUseCase(sl<UserInformationRepository>()),
+    () => UserInformationUseCase(sl<UserInformationRepository>()),
   );
 
   sl.registerFactory<UserInformationBloc>(
-          () => UserInformationBloc(sl<UserInformationUseCase>()));
+    () => UserInformationBloc(sl<UserInformationUseCase>()),
+  );
 
   ///phone number validation
 
   sl.registerFactory<PhoneNumberValidator>(() => PhoneNumberValidator());
 
   sl.registerLazySingleton<UpdateUserPhoneRemoteDataSource>(
-        () => UpdateUserPhoneRemoteDataSourceImpl(
+    () => UpdateUserPhoneRemoteDataSourceImpl(
       sl<ApiService>(),
       sl<StorageService>(),
     ),
   );
 
   sl.registerLazySingleton<UpdateUserPhoneRepository>(
-        () => UpdateUserPhoneRepositoryImpl(sl<UpdateUserPhoneRemoteDataSource>()),
+    () => UpdateUserPhoneRepositoryImpl(sl<UpdateUserPhoneRemoteDataSource>()),
   );
 
   sl.registerLazySingleton<UpdateUserPhoneUseCase>(
-        () => UpdateUserPhoneUseCase(sl<UpdateUserPhoneRepository>()),
+    () => UpdateUserPhoneUseCase(sl<UpdateUserPhoneRepository>()),
   );
   sl.registerFactory<UpdateUserPhoneBloc>(
-          () => UpdateUserPhoneBloc(sl<UpdateUserPhoneUseCase>()));
+    () => UpdateUserPhoneBloc(sl<UpdateUserPhoneUseCase>()),
+  );
 }

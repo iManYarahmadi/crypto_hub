@@ -12,5 +12,6 @@ class LoginParamsModel with _$LoginParamsModel {
     @JsonKey(name: 'password') required String password,
   }) = _LoginParamsModel;
 
-  factory LoginParamsModel.fromJson(Map<String, dynamic> json) => _$LoginParamsModelFromJson(json);
+  factory LoginParamsModel.fromJson(Map<String, dynamic> json) =>
+      _$LoginParamsModelFromJson(json);
 }

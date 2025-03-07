@@ -1,8 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'add_currency_to_favorite_entity.freezed.dart';
 
 @freezed

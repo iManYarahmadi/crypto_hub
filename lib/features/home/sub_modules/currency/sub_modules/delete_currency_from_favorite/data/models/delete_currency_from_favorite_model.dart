@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'delete_currency_from_favorite_model.freezed.dart';
 part 'delete_currency_from_favorite_model.g.dart';
 
@@ -16,4 +15,3 @@ class DeleteCurrencyFromFavoriteModel with _$DeleteCurrencyFromFavoriteModel {
   factory DeleteCurrencyFromFavoriteModel.fromJson(Map<String, dynamic> json) =>
       _$DeleteCurrencyFromFavoriteModelFromJson(json);
 }
-

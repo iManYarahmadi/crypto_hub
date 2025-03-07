@@ -6,7 +6,6 @@ import 'core/theme/app_theme.dart';
 import 'core/utils/app_initial.dart' show appInitialDependencies;
 import 'presentation/routes/app_router.dart';
 
-
 void main() {
   appInitialDependencies();
   runApp(MyApp());

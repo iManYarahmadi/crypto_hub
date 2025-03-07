@@ -5,16 +5,20 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/repositories/delete_currency_from_favorite_repository.dart';
 import 'package:dartz/dartz.dart';
 
-
 class DeleteCurrencyFromFavoriteUseCase
-    implements BaseUseCase<DeleteCurrencyFromFavoriteEntity, DeleteCurrencyFromFavoriteParams> {
+    implements
+        BaseUseCase<
+          DeleteCurrencyFromFavoriteEntity,
+          DeleteCurrencyFromFavoriteParams
+        > {
   final DeleteCurrencyFromFavoriteRepository repository;
 
   DeleteCurrencyFromFavoriteUseCase(this.repository);
 
   @override
   Future<Either<Failure, DeleteCurrencyFromFavoriteEntity>> call(
-      DeleteCurrencyFromFavoriteParams params) async {
+    DeleteCurrencyFromFavoriteParams params,
+  ) async {
     return await repository.deleteCurrencyFromFavorite(params);
   }
 }

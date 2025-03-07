@@ -11,27 +11,28 @@ class ProfileScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-      title: const Text('Profile'),
+        title: const Text('Profile'),
         centerTitle: true,
         elevation: 0,
         backgroundColor: theme.scaffoldBackgroundColor,
         leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
-        onPressed: () => context.goNamed('home'),
+          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
+          onPressed: () => context.goNamed('home'),
         ),
-        ),body: Column(
-      children: [
-        UserInformationSection(),
-        SizedBox(height: 30,),
+      ),
+      body: Column(
+        children: [
+          UserInformationSection(),
+          SizedBox(height: 30),
 
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Divider(color: Colors.grey,height: 1,),
-        ),
-        SizedBox(height: 15,),
-        const PhoneNumberSection(),
-      ],
-    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Divider(color: Colors.grey, height: 1),
+          ),
+          SizedBox(height: 15),
+          const PhoneNumberSection(),
+        ],
+      ),
     );
   }
 }

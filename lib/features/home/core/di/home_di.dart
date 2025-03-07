@@ -37,6 +37,7 @@ void homeSetUpDependencies() {
   sl.registerFactory<CurrencyBloc>(
     () => CurrencyBloc(sl<GetCurrenciesUseCase>()),
   );
+
   /// AddCurrencyToFavorite Feature
   sl.registerLazySingleton<AddCurrencyToFavoriteRemoteDataSource>(
     () => AddCurrencyToFavoriteRemoteDataSource(
@@ -77,6 +78,7 @@ void homeSetUpDependencies() {
     () =>
         DeleteCurrencyFromFavoriteBloc(sl<DeleteCurrencyFromFavoriteUseCase>()),
   );
+
   /// GetFavoriteCurrencies Feature
   sl.registerLazySingleton<GetFavoriteCurrenciesRemoteDataSource>(
     () => GetFavoriteCurrenciesRemoteDataSource(
