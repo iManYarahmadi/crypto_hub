@@ -36,6 +36,13 @@ class CurrencyItem extends StatelessWidget {
           placeholderBuilder: (_) => CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
           ),
+          errorBuilder: (context, error, stackTrace) {
+            return SizedBox(
+              height: 40,
+              width: 40,
+              child: Icon(Icons.safety_check),
+            );
+          },
           semanticsLabel: '${currency.name} icon',
         ),
         title: Text(
