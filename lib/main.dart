@@ -1,15 +1,14 @@
-// lib/main.dart
-import 'package:cryptohub/core/di/injection.dart' show setupDependencies, sl;
 import 'package:cryptohub/presentation/blocs/themes/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'core/di/injection.dart' show sl;
 import 'core/theme/app_theme.dart';
+import 'core/utils/app_initial.dart' show appInitialDependencies;
 import 'presentation/routes/app_router.dart';
 
 
 void main() {
-  setupDependencies();
+  appInitialDependencies();
   runApp(MyApp());
 }
 
