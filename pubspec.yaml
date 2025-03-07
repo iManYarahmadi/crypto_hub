@@ -26,6 +26,9 @@ dependencies:
   collection: ^1.19.1
   shimmer: ^3.0.0
   flutter_secure_storage: ^9.2.4
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+  mockito: ^5.4.5
 
 dev_dependencies:
   flutter_test:
