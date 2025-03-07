@@ -6,7 +6,8 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_cur
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/entities/add_currency_to_favorite_entity.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/add_currency_to_favorite/domain/repositories/add_currency_to_favorite_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'dart:developer' as developer;
+
+import 'package:dio/dio.dart';
 
 
 class AddCurrencyToFavoriteRepositoryImpl implements AddCurrencyToFavoriteRepository {
@@ -19,14 +20,10 @@ class AddCurrencyToFavoriteRepositoryImpl implements AddCurrencyToFavoriteReposi
     try {
       final model = await remoteDataSource.addCurrencyToFavorite(params);
       return Right(AddCurrencyToFavoriteMapper.toEntity(model));
-    } catch (e, stackTrace) {
-      developer.log(
-        'Add currency to favorite failed: $e',
-        name: 'AddCurrencyToFavoriteRepository',
-        error: e,
-        stackTrace: stackTrace,
-      );
-      return Left(ServerFailure('Failed to add currency to favorites: $e'));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromStatusCode(e.response?.statusCode ?? 500));
+    } catch (e) {
+      return Left(ServerFailure('Unexpected error: $e'));
     }
   }
 }

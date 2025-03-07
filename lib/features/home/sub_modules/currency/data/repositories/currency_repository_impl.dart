@@ -5,7 +5,8 @@ import 'package:cryptohub/features/home/sub_modules/currency/data/mappers/curren
 import 'package:cryptohub/features/home/sub_modules/currency/domain/entities/currency_entity.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/domain/repositories/currency_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'dart:developer' as developer;
+
+import 'package:dio/dio.dart';
 
 class CurrencyRepositoryImpl implements CurrencyRepository {
   final CurrencyRemoteDataSource remoteDataSource;
@@ -17,14 +18,10 @@ class CurrencyRepositoryImpl implements CurrencyRepository {
     try {
       final models = await remoteDataSource.getCurrencies();
       return Right(CurrencyMapper.toEntityList(models));
-    } catch (e, stackTrace) {
-      developer.log(
-        'Get currencies failed: $e',
-        name: 'CurrencyRepository',
-        error: e,
-        stackTrace: stackTrace,
-      );
-      return Left(ServerFailure('Failed to fetch currencies: $e'));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromStatusCode(e.response?.statusCode ?? 500));
+    } catch (e) {
+      return Left(ServerFailure('Unexpected error: $e'));
     }
   }
 }

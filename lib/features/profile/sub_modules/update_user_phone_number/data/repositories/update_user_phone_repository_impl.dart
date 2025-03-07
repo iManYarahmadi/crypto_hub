@@ -5,6 +5,7 @@ import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/
 import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/domain/entities/update_user_phone_entity.dart';
 import 'package:cryptohub/features/profile/sub_modules/update_user_phone_number/domain/repositories/update_user_phone_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class UpdateUserPhoneRepositoryImpl implements UpdateUserPhoneRepository {
   final UpdateUserPhoneRemoteDataSource remoteDataSource;
@@ -16,8 +17,10 @@ class UpdateUserPhoneRepositoryImpl implements UpdateUserPhoneRepository {
     try {
       final model = await remoteDataSource.updateUserPhone(params);
       return Right(UpdateUserPhoneMapper.toEntity(model));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromStatusCode(e.response?.statusCode ?? 500));
     } catch (e) {
-      return Left(ServerFailure('Failed to update user phone: $e'));
+      return Left(ServerFailure('Unexpected error: $e'));
     }
   }
 }

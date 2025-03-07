@@ -1,4 +1,3 @@
-import 'dart:developer' as developer show log;
 import 'package:cryptohub/core/error/failure.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/datasources/delete_currency_from_favorite_remote_datasource.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/data/mappers/delete_currency_from_favorite_mapper.dart';
@@ -6,7 +5,8 @@ import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/entities/delete_currency_from_favorite_entity.dart';
 import 'package:cryptohub/features/home/sub_modules/currency/sub_modules/delete_currency_from_favorite/domain/repositories/delete_currency_from_favorite_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'dart:developer' as developer;
+
+import 'package:dio/dio.dart';
 class DeleteCurrencyFromFavoriteRepositoryImpl implements DeleteCurrencyFromFavoriteRepository {
   final DeleteCurrencyFromFavoriteRemoteDataSource remoteDataSource;
 
@@ -22,14 +22,10 @@ class DeleteCurrencyFromFavoriteRepositoryImpl implements DeleteCurrencyFromFavo
         return Left(ServerFailure(entity.message));
       }
       return Right(entity);
-    } catch (e, stackTrace) {
-      developer.log(
-        'Delete currency from favorite failed: $e',
-        name: 'DeleteCurrencyFromFavoriteRepository',
-        error: e,
-        stackTrace: stackTrace,
-      );
-      return Left(ServerFailure('Failed to delete currency from favorites: $e'));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromStatusCode(e.response?.statusCode ?? 500));
+    } catch (e) {
+      return Left(ServerFailure('Unexpected error: $e'));
     }
   }
 }

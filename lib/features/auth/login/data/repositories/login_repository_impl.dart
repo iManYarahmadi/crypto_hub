@@ -1,4 +1,3 @@
-
 import 'dart:developer' as developer show log;
 
 import 'package:cryptohub/core/error/exceptions.dart';
@@ -16,25 +15,21 @@ class LoginRepositoryImpl implements LoginRepository {
   LoginRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, LoginEntity>> login(String email, String password) async {
+  Future<Either<Failure, LoginEntity>> login(
+    String email,
+    String password,
+  ) async {
     try {
       final model = await remoteDataSource.login(email, password);
-      developer.log('Login successful: Model received - ${model.token}', name: 'LoginRepository');
-      return Right(LoginMapper.toEntity(model));
-    } catch (e, stackTrace) {
       developer.log(
-        'Login failed: $e',
+        'Login successful: Model received - ${model.token}',
         name: 'LoginRepository',
-        error: e,
-        stackTrace: stackTrace,
       );
-      if (e is ServerException) {
-        return Left(ServerFailure('خطای سرور: ${e.message}'));
-      } else if (e is DioException) {
-        return Left(ServerFailure('خطای شبکه: ${e.message}'));
-      } else {
-        return Left(ServerFailure('خطای ناشناخته: $e'));
-      }
+      return Right(LoginMapper.toEntity(model));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromStatusCode(e.response?.statusCode ?? 500));
+    } catch (e) {
+      return Left(ServerFailure('Unexpected error: $e'));
     }
   }
 }
