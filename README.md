@@ -2,7 +2,7 @@
 
 A Flutter application built with Clean Architecture, featuring secure authentication, cryptocurrency management, and user profile functionalities. The app supports light and dark themes, unit/widget tests for key components, and secure token storage.
 
-![Demo](docs/demo.gif)
+https://github.com/user-attachments/assets/768643c9-2153-4c1d-b974-1bd691faef77
 
 ## Features
 
@@ -45,6 +45,31 @@ The project leverages modern Flutter tools and libraries:
 - **Code Generation**: `freezed` and `json_serializable` for immutable data and serialization.
 - **Testing**: `bloc_test`, `mocktail`, and `mockito` for unit and widget tests.
 - **UI Enhancements**: `flutter_svg` for SVG rendering and `shimmer` for loading effects.
+
+## Installation & Setup
+
+### 1️⃣ Clone the repository
+```sh
+git clone <repository-url>
+cd crypto_hub
+```
+
+### 2️⃣ Install dependencies
+```sh
+flutter pub get
+```
+
+### 3️⃣ Generate necessary files
+Run the following command to generate necessary files using `build_runner`:
+```sh
+dart run build_runner build
+```
+
+### 4️⃣ Run the app
+Use this command to launch the application on a connected device or emulator:
+```sh
+flutter run
+```
 
 ## Flutter & Dart Version
 Uses:
