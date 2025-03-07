@@ -54,7 +54,7 @@ final GoRouter appRouter = GoRouter(
           ),
       routes: [
         GoRoute(
-          path: 'profile',
+          path: '/profile',
           name: 'profile',
           builder:
               (context, state) => MultiBlocProvider(
