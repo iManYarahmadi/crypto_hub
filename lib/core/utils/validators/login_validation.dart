@@ -30,24 +30,15 @@ class LoginValidation {
     },
   );
 
-  static final _validatePassword = StreamTransformer<
-    String,
-    String
-  >.fromHandlers(
+  static final _validatePassword = StreamTransformer<String, String>.fromHandlers(
     handleData: (password, sink) {
-      const passwordPattern = r'^(?=.*@)[a-zA-Z0-9@]{8,}$';
       if (password.isEmpty) {
         sink.addError('Password cannot be empty');
-      } else if (!RegExp(passwordPattern).hasMatch(password)) {
-        sink.addError(
-          'Password must be at least 8 characters, contain @, and only English letters or numbers',
-        );
       } else {
         sink.add(password);
       }
     },
   );
-
   void dispose() {
     _email.close();
     _password.close();
